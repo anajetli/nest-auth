@@ -15,7 +15,8 @@ import { EventsController } from './events.controller';
       password: '',
       database: 'esco',
       entities: [DB_Event]
-    })
+    }),
+    TypeOrmModule.forFeature([DB_Event])
   ],
   controllers: [AppController, EventsController],
   providers: [AppService],

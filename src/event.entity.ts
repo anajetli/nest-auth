@@ -11,7 +11,7 @@ export class DB_Event {
     description: string;
 
     @Column()
-    when: Date;
+    date: Date;
 
     @Column()
     address: string;
