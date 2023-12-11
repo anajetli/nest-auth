@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, ValidationPipe } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { CreateEventDto } from "./create-event.dto";
@@ -19,8 +19,8 @@ export class EventsController {
     }
 
     @Get(':id')
-    async fineOne(@Param('id') id) {
-        return await this.repository.findOne(id);
+    async fineOne(@Param('id', new ParseIntPipe) id) {
+        return await this.repository.findOne({ where: {id: id}});
     }
 
     @Post()
@@ -32,8 +32,8 @@ export class EventsController {
     }
 
     @Patch(':id')
-    async update(@Param('id') id, @Body() input: UpdateEventDto) {
-        const event = await this.repository.findOne(id);
+    async update(@Param('id', new ParseIntPipe) id, @Body(ValidationPipe) input: UpdateEventDto) {
+        const event = await this.repository.findOne({ where: {id: id}});
         return await this.repository.save({
             ...event,
             ...input,
@@ -42,8 +42,8 @@ export class EventsController {
     }
 
     @Delete(':id')
-    async remove(@Param('id') id) {
-        const event = await this.repository.findOne(id);
+    async remove(@Param('id', new ParseIntPipe) id) {
+        const event = await this.repository.findOne({ where: {id: id}});
         await this.repository.remove(event);
     }
 }
