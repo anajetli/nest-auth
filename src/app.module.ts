@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { DB_Attendee } from './attendee.entity';
 import { DB_Event } from './event.entity';
 import { EventsController } from './events.controller';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -21,7 +22,8 @@ import { EventsController } from './events.controller';
       database: 'esco',
       entities: [DB_Event, DB_Attendee],
     }),
-    TypeOrmModule.forFeature([DB_Event])
+    TypeOrmModule.forFeature([DB_Event]),
+    UsersModule
   ],
   controllers: [AppController, EventsController],
   providers: [AppService],
