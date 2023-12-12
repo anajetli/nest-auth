@@ -27,7 +27,7 @@ export class EventsController {
     async create(@Body() input: CreateEventDto) {
         return await this.repository.save({
             ...input,
-            date: new Date(input.date),            
+            date: new Date(input.date),
         });
     }
 
