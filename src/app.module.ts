@@ -8,6 +8,7 @@ import { DB_Event } from './event.entity';
 import { EventsController } from './events.controller';
 import { DB_User } from './users/user.entity';
 import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -24,7 +25,8 @@ import { UsersModule } from './users/users.module';
       entities: [DB_Event, DB_Attendee, DB_User],
     }),
     TypeOrmModule.forFeature([DB_Event]),
-    UsersModule
+    UsersModule,
+    AuthModule
   ],
   controllers: [AppController, EventsController],
   providers: [AppService],
