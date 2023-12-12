@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { DB_Attendee } from './attendee.entity';
 import { DB_Event } from './event.entity';
 import { EventsController } from './events.controller';
+import { DB_User } from './users/user.entity';
 import { UsersModule } from './users/users.module';
 
 @Module({
@@ -20,7 +21,7 @@ import { UsersModule } from './users/users.module';
       username: 'root',
       password: '',
       database: 'esco',
-      entities: [DB_Event, DB_Attendee],
+      entities: [DB_Event, DB_Attendee, DB_User],
     }),
     TypeOrmModule.forFeature([DB_Event]),
     UsersModule
