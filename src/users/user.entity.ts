@@ -30,6 +30,9 @@ export class DB_User {
     me: string;
 
     @Column()
+    password: string;
+
+    @Column()
     created_at: string;
 
     @Column()

@@ -14,16 +14,17 @@ export class LocalStrategy extends PassportStrategy(Strategy){
         @InjectRepository(DB_User)
         private readonly  userRepository: Repository<DB_User>
     ){
-        super();
+        super({
+            usernameField: 'email',
+            passwordField: 'password',
+        });
     }
 
-    public async validate(email: string) : Promise<any>{
-        const user = await this.userRepository.findOne({
-            where: { email }
-        });
+    public async validate(username:string, password: string) : Promise<any>{
+        const user = this.userRepository.findOne({ where: {email: username}});
 
         if(!user){
-            this.logger.debug(`User ${email} not found!`);
+            this.logger.debug(`User ${username} not found!`);
             throw new UnauthorizedException();
         }
 
