@@ -1,0 +1,10 @@
+export class CreateUserDto {
+    first_name: string;
+    last_name: string;
+    email: string;
+    access_token: string;
+    refresh_token: string;
+    id_token: string;
+    expires_in: number;
+    me: string;
+}
