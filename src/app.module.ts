@@ -9,6 +9,7 @@ import { EventsController } from './events.controller';
 import { DB_User } from './users/user.entity';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { MsoidcModule } from './msoidc/msoidc.module';
 
 @Module({
   imports: [
@@ -27,7 +28,8 @@ import { AuthModule } from './auth/auth.module';
     }),
     TypeOrmModule.forFeature([DB_Event]),
     UsersModule,
-    AuthModule
+    AuthModule,
+    MsoidcModule
   ],
   controllers: [AppController, EventsController],
   providers: [AppService],
