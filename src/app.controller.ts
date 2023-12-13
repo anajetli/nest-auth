@@ -29,10 +29,12 @@ export class AppController {
   }
   
   @Get('/callback')
-  getCallback(@Query() query) : any{
+  async getCallback(@Query() query) : Promise<any>{
     const code = query.code;
     const state = query.state;
     const session_state = query.session_state;
-    return session_state;
+
+    const msal = await this.appService.getMSALToken(code);
+    return msal;
   }
 }
